@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Button btnDisconnect = (Button) findViewById(R.id.btnDisconnect);
         btnDisconnect.setOnClickListener(this.clickBtnDisconnect);
 
+        Button btnSendMotion1 = (Button) findViewById(R.id.btnSendMotion1);
+        btnSendMotion1.setOnClickListener(this.clickBtnSendMotion1);
+
+        Button btnSendMotion2 = (Button) findViewById(R.id.btnSendMotion2);
+        btnSendMotion2.setOnClickListener(this.clickBtnSendMotion2);
+
         //Konashi 関連の処理をするユーテリティ初期化
         KonashiUtil.getInstance().initialize(getApplicationContext());
 
@@ -85,6 +91,35 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    private View.OnClickListener clickBtnSendMotion1 = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View view) {
+            CmdPack pack = new CmdPack();
+            pack.setSize((byte)3);
+            pack.setType(CmdPack.CMD_TYPE.MOTION_TYPE1.ordinal());
+            Log.d(TAG, "Send ---");
+            Log.d(TAG, " hex:"+CommonUtil.getInstance().toHexString( pack.toByteArray() ));
+
+            KonashiUtil.getInstance().uartWrite(pack.toByteArray());
+        }
+    };
+
+    private View.OnClickListener clickBtnSendMotion2 = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View view) {
+            CmdPack pack = new CmdPack();
+            pack.setSize((byte)3);
+            pack.setType(CmdPack.CMD_TYPE.MOTION_TYPE2.ordinal());
+            Log.d(TAG, "Send ---");
+            Log.d(TAG, " hex:"+CommonUtil.getInstance().toHexString( pack.toByteArray() ));
+
+            KonashiUtil.getInstance().uartWrite(pack.toByteArray());
+        }
+    };
+
+
     //Konashiからのイベント受け取り
     private KonashiReceiver.CallbackKonashiReceiver callbackKonashiReceiver = new KonashiReceiver.CallbackKonashiReceiver(){
         @Override
@@ -118,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.txtLogs.setText(MainActivity.this.logBuffer.toString());
 
                         //受信コマンドをエコーしてみる
-                        KonashiUtil.getInstance().uartWrite(cmdPack.toByteArray());
+                        //KonashiUtil.getInstance().uartWrite(cmdPack.toByteArray());
 
                         cmdPack = null;
                     }

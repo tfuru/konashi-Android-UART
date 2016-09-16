@@ -26,10 +26,28 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="konashi Disconnect"
+        android:text="Send Motion1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnFind"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btnSendMotion1"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Send Motion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSendMotion1"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btnSendMotion2"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="konashi Disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSendMotion2"
         android:layout_alignParentStart="true"
         android:id="@+id/btnDisconnect"
         android:layout_alignParentEnd="true" />

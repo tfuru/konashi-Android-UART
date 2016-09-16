@@ -16,6 +16,15 @@ import lombok.Setter;
 public class CmdPack {
     private static final String TAG = CmdPack.class.getName();
 
+    public static enum CMD_TYPE {
+        NONE,
+        REC_START,
+        REC_STOP,
+        HUMAN_SENSOR_ON,
+        MOTION_TYPE1,
+        MOTION_TYPE2,
+    };
+
     @Getter
     @Setter
     private byte size;
@@ -57,6 +66,7 @@ public class CmdPack {
     public byte[] toByteArray(){
         if(baoStream.size() == 0){
             baoStream.write(size);
+            baoStream.write(0);
             baoStream.write(type);
             try {
                 parse();
